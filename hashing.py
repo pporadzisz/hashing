@@ -6,9 +6,8 @@ class Hashing:
 
     @staticmethod
     def createHash (password=None, salt=None, iterations=100):
-
         if iterations<100:
-           raise Exception("Iterations - value cannot be less than 100.")
+            raise Exception("Iterations - value cannot be less than 100.")
 
         if salt is None:
             salt = ''.join(random.choices(string.ascii_letters + string.digits, k=32))
