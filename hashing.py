@@ -6,7 +6,7 @@ class Hashing:
 
     @staticmethod
     def createHash (password=None, salt=None, iterations=100):
-        
+
         if iterations<100:
            raise Exception("Iterations - value cannot be less than 100.")
 
