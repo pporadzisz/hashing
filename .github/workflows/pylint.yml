@@ -17,6 +17,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install pylint
-    - name: Analysing the code with pylint
+    - name: Analysing the code with pylint test
       run: |
         pylint $(git ls-files '*.py')

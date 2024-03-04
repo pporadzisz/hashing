@@ -1,3 +1,5 @@
+"""Test module"""
+
 import pytest
 from hashing import Hashing
 
@@ -27,7 +29,7 @@ def test_hashing_less_iterations():
     [
         ("LHjzPxxqBQywKkXDLH9f","a7jSw91dYNUEGjbS3PX9CJAnQh461xs3",100),
         ("pHjzPxxqBQywKkXDLH9f","a7jSw91dYNUEGjbS3PX9CJAnQh461xs2",150)
-    ]   
+    ]
 )
 def test_hash_is_created(password, salt, iterations):
     """_summary_
@@ -44,3 +46,4 @@ def test_hash_is_created2_without_parameters():
     """_summary_
     """
     assert len(Hashing.create_hash())==4
+    
