@@ -1,3 +1,4 @@
+"""Module providing a function create password, salt, username, combined string """
 import random
 import string
 import base64
@@ -5,10 +6,9 @@ from hashlib import pbkdf2_hmac
 
 class Hashing:
     """Class representing a hashing"""
-
     @staticmethod
-    def create_hash (password=None, salt=None, iterations=100):
-        """Create Hash method """
+    def check_data( password=None, salt=None, iterations=100):
+        """Check data method """
         if iterations<100:
             raise ValueError("Iterations - value cannot be less than 100.")
 
@@ -17,14 +17,20 @@ class Hashing:
         elif len(salt)<32:
             raise ValueError("Salt - value cannot be shorter than 32 characters.")
 
-        salt_bytes = salt.encode('utf-8')
-        salt_base64_bytes = base64.b64encode(salt_bytes)
-
         if password is None:
             password = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
         elif len(password)<20:
             print('dsdsd')
             raise ValueError("Password - value canot be shorter than 20 characters.")
+        return (password,salt,iterations)
+        
+    @staticmethod
+    def create_hash (password=None, salt=None, iterations=100):
+        """Create Hash method """
+        (password,salt,iterations) = Hashing.check_data(password,salt,iterations)
+
+        salt_bytes = salt.encode('utf-8')
+        salt_base64_bytes = base64.b64encode(salt_bytes)
 
         password_bytes = password.encode('utf-8')
 
