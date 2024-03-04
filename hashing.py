@@ -16,15 +16,15 @@ class Hashing:
 
         salt_bytes = salt.encode('utf-8')
         salt_base64_bytes = base64.b64encode(salt_bytes)
-        
+
         if password is None:
             password = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
         elif len(password)<20:
                 print('dsdsd')
                 raise Exception("Password - value canot be shorter than 20 characters.")
-      
+
         password_bytes = password.encode('utf-8')
-        
+
         dk = pbkdf2_hmac('sha512',password_bytes , salt_bytes, iterations)
         base64_bytes = base64.b64encode(dk)
         base64_message = base64_bytes.decode('utf-8')
