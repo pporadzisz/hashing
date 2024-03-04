@@ -4,17 +4,17 @@ from hashing import Hashing
 def test_hashing_short_password():
     password = "a82aff09"
     with pytest.raises(Exception):
-        Hashing.createHash(password=password)
+        Hashing.create_hash(password=password)
 
 def test_hashing_short_salt():
     salt = "a82a888"
     with pytest.raises(Exception):
-        Hashing.createHash(salt=salt)
-   
+        Hashing.create_hash(salt=salt)
+
 def test_hashing_less_iterations():
     iterations = 99
     with pytest.raises(Exception):
-        Hashing.createHash(iterations=iterations)
+        Hashing.create_hash(iterations=iterations)
 
 @pytest.mark.parametrize(
     "password, salt, iterations",
@@ -24,8 +24,8 @@ def test_hashing_less_iterations():
     ]   
 )
 def test_hash_is_created(password, salt, iterations):
-    Hashing.createHash(password=password, salt=salt, iterations=iterations)
-    assert len(Hashing.createHash(password=password, salt=salt, iterations=iterations))==4
+    Hashing.create_hash(password=password, salt=salt, iterations=iterations)
+    assert len(Hashing.create_hash(password=password, salt=salt, iterations=iterations))==4
 
 def test_hash_is_created2_without_parameters():
-    assert len(Hashing.createHash())==4
+    assert len(Hashing.create_hash())==4

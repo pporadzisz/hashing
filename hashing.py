@@ -23,7 +23,7 @@ class Hashing:
             print('dsdsd')
             raise ValueError("Password - value canot be shorter than 20 characters.")
         return (password,salt,iterations)
-        
+
     @staticmethod
     def create_hash (password=None, salt=None, iterations=100):
         """Create Hash method """
@@ -40,4 +40,5 @@ class Hashing:
 
         username = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
         combined=f'{salt_base64_bytes.decode("utf-8") }:100:{base64_message }'
+
         return (password,salt,username,combined)
