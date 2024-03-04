@@ -1,18 +1,21 @@
-import random, string
+import random
+import string
 import base64
 from hashlib import pbkdf2_hmac
 
 class Hashing:
+    """Class representing a hashing"""
 
     @staticmethod
-    def createHash (password=None, salt=None, iterations=100):
+    def create_hash (password=None, salt=None, iterations=100):
+        """Create Hash method """
         if iterations<100:
-            raise Exception("Iterations - value cannot be less than 100.")
+            raise ValueError("Iterations - value cannot be less than 100.")
 
         if salt is None:
             salt = ''.join(random.choices(string.ascii_letters + string.digits, k=32))
         elif len(salt)<32:
-            raise Exception("Salt - value cannot be shorter than 32 characters.")
+            raise ValueError("Salt - value cannot be shorter than 32 characters.")
 
         salt_bytes = salt.encode('utf-8')
         salt_base64_bytes = base64.b64encode(salt_bytes)
@@ -20,8 +23,8 @@ class Hashing:
         if password is None:
             password = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
         elif len(password)<20:
-                print('dsdsd')
-                raise Exception("Password - value canot be shorter than 20 characters.")
+            print('dsdsd')
+            raise ValueError("Password - value canot be shorter than 20 characters.")
 
         password_bytes = password.encode('utf-8')
 
